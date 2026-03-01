@@ -7,10 +7,10 @@
 
 <style>
 body{
-font-family:'Segoe UI',sans-serif;
-background:#f1f5f9;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#e0f2fe,#f1f5f9);
 margin:0;
-padding:15px;
+padding:20px;
 max-width:700px;
 margin:auto;
 color:#0f172a;
@@ -18,93 +18,140 @@ color:#0f172a;
 
 .banner{
 width:100%;
-border-radius:16px;
-margin-bottom:20px;
+border-radius:20px;
+margin-bottom:25px;
 object-fit:contain;
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
 
 .card{
 background:white;
-padding:20px;
-border-radius:16px;
-box-shadow:0 8px 25px rgba(0,0,0,0.08);
-margin-bottom:20px;
+padding:25px;
+border-radius:22px;
+box-shadow:0 20px 50px rgba(0,0,0,0.12);
+margin-bottom:25px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
 }
 
 .vagas{
-background:#fee2e2;
-color:#b91c1c;
-padding:10px;
-border-radius:12px;
-font-weight:600;
+background:linear-gradient(135deg,#fecaca,#f87171);
+color:#7f1d1d;
+padding:14px;
+border-radius:14px;
+font-weight:700;
 text-align:center;
-margin-bottom:15px;
+margin-bottom:20px;
+box-shadow:0 10px 25px rgba(248,113,113,0.4);
+font-size:18px;
+}
+
+.info{
+line-height:1.7;
+margin-bottom:20px;
+font-size:15px;
+color:#334155;
+}
+
+.info b{
+color:#1d4ed8;
+}
+
+label{
+font-weight:600;
+font-size:14px;
 }
 
 input,select{
 width:100%;
-padding:12px;
-margin-top:6px;
-margin-bottom:14px;
-border-radius:10px;
-border:1px solid #d1d5db;
+padding:14px;
+margin-top:8px;
+margin-bottom:16px;
+border-radius:14px;
+border:none;
+background:#f1f5f9;
+box-shadow:inset 3px 3px 8px rgba(0,0,0,0.08);
 font-size:15px;
 }
 
 .pagamento{
 display:flex;
-gap:12px;
-margin-bottom:15px;
+gap:15px;
+margin-bottom:20px;
 }
 
 .botao{
 flex:1;
-padding:14px;
-border-radius:14px;
+padding:16px;
+border-radius:18px;
 text-align:center;
 cursor:pointer;
-font-weight:600;
+font-weight:700;
 font-size:16px;
-box-shadow:0 5px 0 rgba(0,0,0,0.15);
+transition:0.2s;
+box-shadow:0 8px 0 rgba(0,0,0,0.2);
 }
 
-.pix{background:#16a34a;color:white;}
-.cartao{background:#2563eb;color:white;}
+.botao:active{
+transform:translateY(8px);
+box-shadow:none;
+}
+
+.pix{
+background:linear-gradient(135deg,#16a34a,#22c55e);
+color:white;
+}
+
+.cartao{
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+color:white;
+}
+
+.calculo{
+background:linear-gradient(135deg,#e0f2fe,#eef2ff);
+padding:18px;
+border-radius:18px;
+box-shadow:inset 0 0 15px rgba(0,0,0,0.05);
+}
+
+.total{
+font-size:26px;
+font-weight:800;
+color:#1d4ed8;
+margin-top:10px;
+}
 
 button{
 width:100%;
-padding:14px;
+padding:16px;
 border:none;
-border-radius:14px;
-margin-top:14px;
+border-radius:18px;
+margin-top:16px;
 font-size:16px;
-font-weight:600;
+font-weight:700;
 cursor:pointer;
+transition:0.2s;
+box-shadow:0 8px 0 rgba(0,0,0,0.25);
 }
 
-.whats-btn{background:#22c55e;color:white;}
-.pix-btn{background:#10b981;color:white;}
-
-.admin{
-display:none;
-background:#ffffff;
-padding:20px;
-border-radius:16px;
-box-shadow:0 8px 25px rgba(0,0,0,0.15);
-margin-top:30px;
+button:active{
+transform:translateY(8px);
+box-shadow:none;
 }
 
-.admin h3{
-margin-top:0;
+.pix-btn{
+background:linear-gradient(135deg,#059669,#10b981);
+color:white;
 }
 
-.small-link{
-text-align:center;
-font-size:12px;
-color:#94a3b8;
-margin-top:40px;
-cursor:pointer;
+.whats-btn{
+background:linear-gradient(135deg,#16a34a,#22c55e);
+color:white;
 }
+
 </style>
 </head>
 
@@ -113,6 +160,30 @@ cursor:pointer;
 <img src="https://i.postimg.cc/s2fgXprp/Blue_and_White_Turkey_Travel_Photo_Collage_Instagram_Post_20260212_074545_0000.png" class="banner">
 
 <div class="card">
+
+<div class="info">
+💙🌊 <b>NOBRES TE CHAMA! Partiu Bom Jardim?</b> 🌊💙<br><br>
+
+📅 11 e 12 de abril<br>
+⏰ Saída: sábado às 05h<br>
+🕑 Retorno: domingo às 14h<br><br>
+
+💦 <b>Roteiro:</b><br>
+✨ Rio Triste<br>
+✨ Balneário Refúgio<br><br>
+
+✅ Transporte ida e volta<br>
+🍽️ Almoço<br>
+☕ Café da manhã<br>
+🏡 Hospedagem<br>
+🛡️ Seguro de vida<br>
+❌ Não incluso: jantar<br><br>
+
+💰 <b>Valores:</b><br>
+Adulto: PIX 870 | Cartão 899<br>
+Criança: PIX 780 | Cartão 799<br>
+Casal: PIX 1800 | Cartão 1849
+</div>
 
 <div class="vagas">
 Vagas disponíveis: <span id="vagas"></span>
@@ -130,41 +201,19 @@ Vagas disponíveis: <span id="vagas"></span>
 </select>
 
 <div class="pagamento">
-<div class="botao pix" onclick="forma='pix'">PIX</div>
-<div class="botao cartao" onclick="forma='cartao'">Cartão</div>
+<div class="botao pix" onclick="forma='pix';calcular()">PIX</div>
+<div class="botao cartao" onclick="forma='cartao';calcular()">Cartão</div>
+</div>
+
+<div class="calculo">
+Valor unitário: R$ <span id="unitario">0,00</span>
+<div class="total">Total: R$ <span id="total">0,00</span></div>
 </div>
 
 <button class="pix-btn" onclick="copiarPix()">Copiar chave PIX</button>
 <button class="whats-btn" onclick="confirmar()">Enviar comprovante</button>
 
 </div>
-
-<div class="admin" id="adminPanel">
-<h3>Painel Administrativo</h3>
-
-<p><b>Total arrecadado:</b> R$ <span id="totalArrecadado">0</span></p>
-
-<label>Custo Transporte</label>
-<input type="number" id="cTransporte">
-
-<label>Custo Hospedagem</label>
-<input type="number" id="cHospedagem">
-
-<label>Outros custos</label>
-<input type="number" id="cOutros">
-
-<button onclick="calcularLucro()">Calcular lucro</button>
-
-<p><b>Lucro estimado:</b> R$ <span id="lucro">0</span></p>
-
-<h4>Reservas:</h4>
-<ul id="listaReservas"></ul>
-
-<button onclick="resetar()">Resetar vagas</button>
-
-</div>
-
-<div class="small-link" onclick="abrirAdmin()">Área interna</div>
 
 <script>
 
@@ -179,6 +228,19 @@ let vagas=localStorage.getItem("vagasNobres")||25;
 let reservas=JSON.parse(localStorage.getItem("reservasNobres"))||[];
 
 document.getElementById("vagas").innerText=vagas;
+
+function formatar(v){
+return Number(v).toLocaleString("pt-BR",{minimumFractionDigits:2});
+}
+
+function calcular(){
+let tipo=document.getElementById("tipo").value;
+if(!tipo||!forma)return;
+
+let valor=valores[tipo][forma];
+document.getElementById("unitario").innerText=formatar(valor);
+document.getElementById("total").innerText=formatar(valor);
+}
 
 function copiarPix(){
 navigator.clipboard.writeText("trilheiros.roomt@gmail.com")
@@ -210,55 +272,7 @@ vagas--;
 localStorage.setItem("vagasNobres",vagas);
 document.getElementById("vagas").innerText=vagas;
 
-atualizarAdmin();
-
 window.open("https://wa.me/5566996926174","_blank");
-}
-
-function abrirAdmin(){
-if(prompt("Senha:")!=="trilheiros2025"){return;}
-document.getElementById("adminPanel").style.display="block";
-atualizarAdmin();
-}
-
-function atualizarAdmin(){
-let lista=document.getElementById("listaReservas");
-lista.innerHTML="";
-let total=0;
-
-reservas.forEach((r,i)=>{
-total+=r.valor;
-let li=document.createElement("li");
-li.innerHTML=r.nome+" - R$ "+r.valor+
-" <button onclick='excluir("+i+")'>Excluir</button>";
-lista.appendChild(li);
-});
-
-document.getElementById("totalArrecadado").innerText=total;
-}
-
-function excluir(i){
-vagas++;
-localStorage.setItem("vagasNobres",vagas);
-reservas.splice(i,1);
-localStorage.setItem("reservasNobres",JSON.stringify(reservas));
-document.getElementById("vagas").innerText=vagas;
-atualizarAdmin();
-}
-
-function calcularLucro(){
-let total=parseFloat(document.getElementById("totalArrecadado").innerText)||0;
-let custos=(+document.getElementById("cTransporte").value||0)+
-(+document.getElementById("cHospedagem").value||0)+
-(+document.getElementById("cOutros").value||0);
-
-document.getElementById("lucro").innerText=(total-custos);
-}
-
-function resetar(){
-localStorage.setItem("vagasNobres",25);
-localStorage.removeItem("reservasNobres");
-location.reload();
 }
 
 </script>
