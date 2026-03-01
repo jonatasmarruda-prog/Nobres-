@@ -3,206 +3,199 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nobres – Bom Jardim</title>
+<title>Nobres – Sistema Premium</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 body{
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#e0f2fe,#f8fafc);
-    margin:0;
-    padding:20px;
-    max-width:750px;
-    margin:auto;
-    color:#0f172a;
+font-family:'Poppins',sans-serif;
+background:#0f172a;
+color:white;
+margin:0;
+padding:20px;
+max-width:800px;
+margin:auto;
 }
 
 .banner{
-    width:100%;
-    border-radius:20px;
-    box-shadow:0 20px 50px rgba(0,0,0,0.2);
-    margin-bottom:25px;
+width:100%;
+border-radius:18px;
+margin-bottom:25px;
 }
 
 .card{
-    background:white;
-    padding:25px;
-    border-radius:25px;
-    box-shadow:0 25px 60px rgba(0,0,0,0.15);
-    margin-bottom:25px;
+background:#111827;
+padding:25px;
+border-radius:20px;
+margin-bottom:25px;
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
 }
 
-.info{
-    line-height:1.8;
-    font-size:15px;
-    color:#334155;
-    margin-bottom:20px;
+h1{
+font-size:24px;
+font-weight:900;
+margin-bottom:15px;
 }
 
-.info b{
-    color:#1d4ed8;
+.section-title{
+margin-top:18px;
+font-weight:800;
+font-size:18px;
+color:#38bdf8;
 }
 
-.countdown{
-    background:#1e3a8a;
-    color:white;
-    padding:12px;
-    border-radius:12px;
-    text-align:center;
-    margin-bottom:15px;
-    font-weight:600;
-}
-
-.escassez{
-    background:linear-gradient(135deg,#ef4444,#f87171);
-    color:white;
-    padding:14px;
-    border-radius:14px;
-    font-weight:700;
-    text-align:center;
-    margin-bottom:20px;
+label{
+font-weight:700;
+margin-top:10px;
+display:block;
 }
 
 input,select{
-    width:100%;
-    padding:14px;
-    margin-top:8px;
-    margin-bottom:15px;
-    border-radius:14px;
-    border:none;
-    background:#f1f5f9;
-    box-shadow:inset 3px 3px 8px rgba(0,0,0,0.08);
+width:100%;
+padding:12px;
+margin-top:6px;
+margin-bottom:12px;
+border-radius:12px;
+border:none;
+background:#1f2937;
+color:white;
+font-size:15px;
 }
 
 .pagamento{
-    display:flex;
-    gap:12px;
-    margin-bottom:15px;
+display:flex;
+gap:10px;
+margin-top:10px;
 }
 
 .botao{
-    flex:1;
-    padding:15px;
-    border-radius:15px;
-    text-align:center;
-    cursor:pointer;
-    font-weight:700;
-    color:white;
-    box-shadow:0 8px 0 rgba(0,0,0,0.25);
+flex:1;
+padding:14px;
+border-radius:14px;
+text-align:center;
+cursor:pointer;
+font-weight:800;
+box-shadow:0 6px 0 rgba(0,0,0,0.5);
+}
+
+.botao:active{
+transform:translateY(6px);
+box-shadow:none;
 }
 
 .pix{background:#16a34a;}
 .cartao{background:#2563eb;}
 
 .total{
-    font-size:26px;
-    font-weight:800;
-    color:#1d4ed8;
-    margin-top:10px;
+font-size:24px;
+font-weight:900;
+margin-top:15px;
+color:#38bdf8;
+}
+
+.alerta{
+color:#f87171;
+font-weight:700;
+margin-top:8px;
 }
 
 button{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:15px;
-    margin-top:15px;
-    font-weight:700;
-    cursor:pointer;
-    color:white;
-    box-shadow:0 8px 0 rgba(0,0,0,0.3);
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+margin-top:12px;
+font-weight:800;
+cursor:pointer;
+box-shadow:0 6px 0 rgba(0,0,0,0.5);
 }
 
-.pix-btn{background:linear-gradient(135deg,#059669,#10b981);}
-.whats-btn{background:linear-gradient(135deg,#16a34a,#22c55e);}
+.pix-btn{background:#059669;color:white;}
+.whats-btn{background:#16a34a;color:white;}
 
 .admin-btn{
-    position:fixed;
-    bottom:10px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:14px;
-    color:#94a3b8;
-    cursor:pointer;
-    opacity:0.5;
+position:fixed;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+font-size:14px;
+opacity:0.4;
+cursor:pointer;
 }
 
 .admin-modal{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.5);
-    justify-content:center;
-    align-items:center;
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
 }
 
 .admin-content{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    width:95%;
-    max-width:600px;
-    max-height:90vh;
-    overflow:auto;
+background:#111827;
+padding:25px;
+border-radius:20px;
+width:95%;
+max-width:600px;
+max-height:90vh;
+overflow:auto;
+}
+
+ul{
+padding-left:15px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- BANNER -->
-<img src="https://i.postimg.cc/s2fgXprp/Blue-and-White-Turkey-Travel-Photo-Collage-Instagram-Post-20260212-074545-0000.png" class="banner">
+<img src="https://i.postimg.cc/s2fgXprp/Blue_and_White_Turkey_Travel_Photo_Collage_Instagram_Post_20260212_074545_0000.png" class="banner">
 
 <div class="card">
 
-<!-- INFORMAÇÕES DO PASSEIO -->
-<div class="info">
-💙🌊 <b>NOBRES TE CHAMA! Partiu Bom Jardim?</b> 🌊💙<br><br>
+<h1>💙🌊 NOBRES TE CHAMA! Partiu Bom Jardim? 🌊💙</h1>
 
 📅 11 e 12 de abril<br>
 ⏰ Saída sábado às 05h<br>
-🕑 Retorno domingo às 14h<br><br>
+🕑 Retorno domingo às 14h<br>
 
-💦 <b>Roteiro:</b><br>
-✨ Rio Triste<br>
-✨ Balneário Refúgio<br><br>
+<div class="section-title">💦 Roteiro</div>
+Rio Triste<br>
+Balneário Refúgio<br>
 
-✅ Transporte ida e volta<br>
-🍽️ Almoço<br>
-☕ Café da manhã<br>
-🏡 Hospedagem<br>
-🛡️ Seguro de vida<br>
-❌ Não incluso: jantar<br><br>
+<div class="section-title">✅ Incluso</div>
+Transporte ida e volta<br>
+Almoço<br>
+Café da manhã<br>
+Hospedagem<br>
+Seguro de vida<br>
+❌ Jantar não incluso<br>
 
-💰 <b>Valores:</b><br>
-👤 Adulto – PIX R$ 870 | Cartão R$ 899<br>
-🧒 Criança – PIX R$ 780 | Cartão R$ 799<br>
-👫 Casal – PIX R$ 1.800 | Cartão R$ 1.849
+<div class="section-title">💰 Valores</div>
+Adulto – PIX 870 | Cartão 899<br>
+Criança – PIX 780 | Cartão 799<br>
+Casal – PIX 1.800 | Cartão 1.849<br>
+
 </div>
 
-<!-- CONTADOR REGRESSIVO -->
-<div class="countdown" id="contador"></div>
+<div class="card">
 
-<!-- VAGAS -->
-<div class="escassez">
-🔥 Restam <span id="vagas"></span> vagas disponíveis
-</div>
-
-<!-- FORMULÁRIO -->
 <label>Nome completo</label>
 <input type="text" id="nome">
 
-<label>Tipo</label>
-<select id="tipo">
-<option value="">Selecione</option>
-<option value="adulto">Adulto</option>
-<option value="crianca">Criança</option>
-<option value="casal">Casal</option>
-</select>
+<label>Adultos</label>
+<select id="adultos"></select>
+
+<label>Crianças</label>
+<select id="criancas"></select>
+
+<label>Casal</label>
+<select id="casal"></select>
 
 <div class="pagamento">
 <div class="botao pix" onclick="forma='pix';calcular()">PIX</div>
@@ -213,7 +206,9 @@ button{
 Total: R$ <span id="valorTotal">0,00</span>
 </div>
 
-<button class="pix-btn" onclick="copiarPix()">PIX – Copiar chave</button>
+<div id="avisoCartao" class="alerta"></div>
+
+<button class="pix-btn" onclick="copiarPix()">Copiar chave PIX</button>
 <button class="whats-btn" onclick="confirmar()">Confirmar pagamento</button>
 
 </div>
@@ -221,13 +216,12 @@ Total: R$ <span id="valorTotal">0,00</span>
 <!-- ADMIN DISCRETO -->
 <div class="admin-btn" onclick="abrirAdmin()">⚙︎</div>
 
-<!-- MODAL ADMIN -->
 <div class="admin-modal" id="adminModal">
 <div class="admin-content">
 
 <h3>Painel Administrativo</h3>
 
-<p><b>Total arrecadado:</b> R$ <span id="totalArrecadado">0</span></p>
+<p>Total arrecadado: R$ <span id="totalArrecadado">0</span></p>
 
 <label>Transporte</label>
 <input type="number" id="cTransporte">
@@ -243,19 +237,18 @@ Total: R$ <span id="valorTotal">0,00</span>
 
 <button onclick="calcularLucro()" style="background:#2563eb;color:white;">Calcular lucro</button>
 
-<p><b>Lucro:</b> R$ <span id="lucro">0</span></p>
+<p>Lucro: R$ <span id="lucro">0</span></p>
 
-<h4>Reservas:</h4>
+<h4>Reservas</h4>
 <ul id="lista"></ul>
 
-<button onclick="fecharAdmin()" style="background:#ef4444;color:white;">Fechar</button>
+<button onclick="fecharAdmin()" style="background:#dc2626;color:white;">Fechar</button>
 
 </div>
 </div>
 
 <script>
 
-// DADOS (vagas e reservas)
 let valores={
 adulto:{pix:870,cartao:899},
 crianca:{pix:780,cartao:799},
@@ -263,58 +256,81 @@ casal:{pix:1800,cartao:1849}
 };
 
 let forma="";
-let vagas=localStorage.getItem("vagas")||25;
 let reservas=JSON.parse(localStorage.getItem("reservas"))||[];
+let vagas=parseInt(localStorage.getItem("vagas"))||25;
 
-document.getElementById("vagas").innerText=vagas;
-
-// CALCULO AUTOMÁTICO
-function calcular(){
-let tipo=document.getElementById("tipo").value;
-if(!tipo||!forma) return;
-
-let valor=valores[tipo][forma];
-document.getElementById("valorTotal").innerText=
-valor.toLocaleString("pt-BR",{minimumFractionDigits:2});
+// preencher selects
+for(let i=0;i<=10;i++){
+adultos.innerHTML+=`<option value="${i}">${i}</option>`;
+criancas.innerHTML+=`<option value="${i}">${i}</option>`;
+casal.innerHTML+=`<option value="${i}">${i}</option>`;
 }
 
-// FUNÇÕES PIX/WHATSAPP
+adultos.addEventListener("change",calcular);
+criancas.addEventListener("change",calcular);
+casal.addEventListener("change",calcular);
+
+function calcular(){
+let a=parseInt(adultos.value)||0;
+let c=parseInt(criancas.value)||0;
+let cs=parseInt(casal.value)||0;
+
+if(!forma){
+valorTotal.innerText="0,00";
+return;
+}
+
+let total=0;
+total+=a*valores.adulto[forma];
+total+=c*valores.crianca[forma];
+total+=cs*valores.casal[forma];
+
+valorTotal.innerText=total.toLocaleString("pt-BR",{minimumFractionDigits:2});
+
+if(forma==="cartao" && (a+c+cs)>1){
+avisoCartao.innerText="Para mais de 1 vaga no cartão, solicitar novo link.";
+}else{
+avisoCartao.innerText="";
+}
+}
+
 function copiarPix(){
 alert("Após pagar, envie o comprovante no WhatsApp.");
 navigator.clipboard.writeText("trilheiros.roomt@gmail.com");
 }
 
 function confirmar(){
-if(vagas<=0){alert("Vagas esgotadas!");return;}
-
 let nome=document.getElementById("nome").value.trim().toLowerCase();
-let tipo=document.getElementById("tipo").value;
+let totalVagas=parseInt(adultos.value)+parseInt(criancas.value)+parseInt(casal.value);
 
-if(!nome||!tipo||!forma){
-alert("Preencha todos os campos.");return;
+if(!nome || totalVagas==0 || !forma){
+alert("Preencha corretamente.");
+return;
 }
 
 if(reservas.find(r=>r.nome===nome)){
-alert("Este nome já possui reserva.");return;
+alert("Nome já cadastrado.");
+return;
 }
 
-let valor=valores[tipo][forma];
+if(vagas-totalVagas<0){
+alert("Vagas insuficientes.");
+return;
+}
 
-reservas.push({nome,valor});
+reservas.push({nome,totalVagas});
 localStorage.setItem("reservas",JSON.stringify(reservas));
 
-vagas--;
+vagas-=totalVagas;
 localStorage.setItem("vagas",vagas);
-document.getElementById("vagas").innerText=vagas;
 
 window.open("https://wa.me/5566996926174","_blank");
 
 atualizarAdmin();
 }
 
-// PAINEL ADMIN
 function abrirAdmin(){
-if(prompt("Senha:")!=="2026") return;
+if(prompt("Senha:")!=="2026")return;
 document.getElementById("adminModal").style.display="flex";
 atualizarAdmin();
 }
@@ -329,8 +345,9 @@ lista.innerHTML="";
 let total=0;
 
 reservas.forEach((r,i)=>{
-total+=r.valor;
-lista.innerHTML+=`<li>${r.nome} - R$ ${r.valor} 
+let valor=r.totalVagas*870;
+total+=valor;
+lista.innerHTML+=`<li>${r.nome} - ${r.totalVagas} vaga(s)
 <button onclick="excluir(${i})">Excluir</button></li>`;
 });
 
@@ -338,11 +355,11 @@ document.getElementById("totalArrecadado").innerText=total;
 }
 
 function excluir(i){
+let vagasDevolver=reservas[i].totalVagas;
 reservas.splice(i,1);
 localStorage.setItem("reservas",JSON.stringify(reservas));
-vagas++;
+vagas+=vagasDevolver;
 localStorage.setItem("vagas",vagas);
-document.getElementById("vagas").innerText=vagas;
 atualizarAdmin();
 }
 
@@ -351,22 +368,6 @@ let total=parseFloat(document.getElementById("totalArrecadado").innerText)||0;
 let custos=(+cTransporte.value||0)+(+cHospedagem.value||0)+(+cAlimentacao.value||0)+(+cOutros.value||0);
 document.getElementById("lucro").innerText=(total-custos);
 }
-
-// CONTADOR REGRESSIVO
-let dataEvento=new Date("2026-04-11T05:00:00");
-setInterval(()=>{
-let agora=new Date();
-let diff=dataEvento-agora;
-if(diff<=0){
-document.getElementById("contador").innerText="Inscrições encerradas";
-return;
-}
-let dias=Math.floor(diff/(1000*60*60*24));
-let horas=Math.floor((diff/(1000*60*60))%24);
-let minutos=Math.floor((diff/1000/60)%60);
-document.getElementById("contador").innerText=
-"⏳ Encerramento em: "+dias+"d "+horas+"h "+minutos+"m";
-},1000);
 
 </script>
 
