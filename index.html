@@ -3,93 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reserva Nobres</title>
+<title>Nobres Premium</title>
 
 <style>
 body{
-font-family: Arial, sans-serif;
-background:#f4f8ff;
+font-family:'Segoe UI',sans-serif;
+background:#f1f5f9;
 margin:0;
 padding:15px;
-max-width:500px;
+max-width:700px;
 margin:auto;
+color:#0f172a;
 }
 
 .banner{
 width:100%;
-border-radius:12px;
-margin-bottom:15px;
+border-radius:16px;
+margin-bottom:20px;
 object-fit:contain;
 }
 
 .card{
 background:white;
-padding:15px;
-border-radius:12px;
-box-shadow:0 4px 12px rgba(0,0,0,0.1);
+padding:20px;
+border-radius:16px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+margin-bottom:20px;
 }
 
-input, select{
-width:100%;
+.vagas{
+background:#fee2e2;
+color:#b91c1c;
 padding:10px;
-margin-top:8px;
-margin-bottom:12px;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-.btn-pagamento{
-display:flex;
-gap:10px;
+border-radius:12px;
+font-weight:600;
+text-align:center;
 margin-bottom:15px;
 }
 
-.btn{
-flex:1;
+input,select{
+width:100%;
 padding:12px;
+margin-top:6px;
+margin-bottom:14px;
 border-radius:10px;
-border:2px solid #ccc;
+border:1px solid #d1d5db;
+font-size:15px;
+}
+
+.pagamento{
+display:flex;
+gap:12px;
+margin-bottom:15px;
+}
+
+.botao{
+flex:1;
+padding:14px;
+border-radius:14px;
 text-align:center;
 cursor:pointer;
-font-weight:bold;
+font-weight:600;
+font-size:16px;
+box-shadow:0 5px 0 rgba(0,0,0,0.15);
 }
 
-.ativo-pix{
-border-color:#00b894;
-background:#e6fff6;
-}
-
-.ativo-cartao{
-border-color:#0984e3;
-background:#e6f0ff;
-}
-
-.calculo{
-background:#eef4ff;
-padding:15px;
-border-radius:12px;
-margin-top:10px;
-}
-
-.total{
-font-size:22px;
-font-weight:bold;
-color:#1d4ed8;
-margin-top:10px;
-}
+.pix{background:#16a34a;color:white;}
+.cartao{background:#2563eb;color:white;}
 
 button{
 width:100%;
-padding:12px;
+padding:14px;
 border:none;
-border-radius:10px;
-margin-top:10px;
+border-radius:14px;
+margin-top:14px;
 font-size:16px;
+font-weight:600;
 cursor:pointer;
 }
 
-.pix-btn{background:#00b894;color:white;}
-.whats-btn{background:#25D366;color:white;}
+.whats-btn{background:#22c55e;color:white;}
+.pix-btn{background:#10b981;color:white;}
+
+.admin{
+display:none;
+background:#ffffff;
+padding:20px;
+border-radius:16px;
+box-shadow:0 8px 25px rgba(0,0,0,0.15);
+margin-top:30px;
+}
+
+.admin h3{
+margin-top:0;
+}
+
+.small-link{
+text-align:center;
+font-size:12px;
+color:#94a3b8;
+margin-top:40px;
+cursor:pointer;
+}
 </style>
 </head>
 
@@ -99,13 +114,14 @@ cursor:pointer;
 
 <div class="card">
 
-<label>Nome completo *</label>
+<div class="vagas">
+Vagas disponíveis: <span id="vagas"></span>
+</div>
+
+<label>Nome completo</label>
 <input type="text" id="nome">
 
-<label>Telefone *</label>
-<input type="text" id="telefone">
-
-<label>Tipo de reserva *</label>
+<label>Tipo</label>
 <select id="tipo">
 <option value="">Selecione</option>
 <option value="adulto">Adulto</option>
@@ -113,119 +129,136 @@ cursor:pointer;
 <option value="casal">Casal</option>
 </select>
 
-<label>Quantidade *</label>
-<select id="quantidade">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-</select>
-
-<label>Forma de pagamento *</label>
-
-<div class="btn-pagamento">
-<div class="btn" id="pix">PIX</div>
-<div class="btn" id="cartao">Cartão</div>
-</div>
-
-<div class="calculo">
-<div>Valor unitário: R$ <span id="unitario">0,00</span></div>
-<div>Quantidade: <span id="qtd">1</span></div>
-<div class="total">Total: R$ <span id="total">0,00</span></div>
-<div id="economia" style="color:green;font-weight:bold;margin-top:8px;"></div>
+<div class="pagamento">
+<div class="botao pix" onclick="forma='pix'">PIX</div>
+<div class="botao cartao" onclick="forma='cartao'">Cartão</div>
 </div>
 
 <button class="pix-btn" onclick="copiarPix()">Copiar chave PIX</button>
-<button class="whats-btn" onclick="enviarWhats()">Enviar comprovante</button>
+<button class="whats-btn" onclick="confirmar()">Enviar comprovante</button>
 
 </div>
 
+<div class="admin" id="adminPanel">
+<h3>Painel Administrativo</h3>
+
+<p><b>Total arrecadado:</b> R$ <span id="totalArrecadado">0</span></p>
+
+<label>Custo Transporte</label>
+<input type="number" id="cTransporte">
+
+<label>Custo Hospedagem</label>
+<input type="number" id="cHospedagem">
+
+<label>Outros custos</label>
+<input type="number" id="cOutros">
+
+<button onclick="calcularLucro()">Calcular lucro</button>
+
+<p><b>Lucro estimado:</b> R$ <span id="lucro">0</span></p>
+
+<h4>Reservas:</h4>
+<ul id="listaReservas"></ul>
+
+<button onclick="resetar()">Resetar vagas</button>
+
+</div>
+
+<div class="small-link" onclick="abrirAdmin()">Área interna</div>
+
 <script>
 
-let formaPagamento = "";
-let valores = {
-adulto: {pix:870, cartao:899},
-crianca: {pix:780, cartao:799},
-casal: {pix:1800, cartao:1849}
+let valores={
+adulto:{pix:870,cartao:899},
+crianca:{pix:780,cartao:799},
+casal:{pix:1800,cartao:1849}
 };
 
-const pixBtn = document.getElementById("pix");
-const cartaoBtn = document.getElementById("cartao");
+let forma="";
+let vagas=localStorage.getItem("vagasNobres")||25;
+let reservas=JSON.parse(localStorage.getItem("reservasNobres"))||[];
 
-pixBtn.onclick = () => {
-formaPagamento = "pix";
-pixBtn.classList.add("ativo-pix");
-cartaoBtn.classList.remove("ativo-cartao");
-calcular();
-};
-
-cartaoBtn.onclick = () => {
-formaPagamento = "cartao";
-cartaoBtn.classList.add("ativo-cartao");
-pixBtn.classList.remove("ativo-pix");
-calcular();
-};
-
-function formatar(v){
-return v.toLocaleString("pt-BR",{minimumFractionDigits:2});
-}
-
-function calcular(){
-let tipo = document.getElementById("tipo").value;
-let qtd = parseInt(document.getElementById("quantidade").value);
-document.getElementById("qtd").innerText = qtd;
-
-if(!tipo || !formaPagamento){
-document.getElementById("unitario").innerText="0,00";
-document.getElementById("total").innerText="0,00";
-document.getElementById("economia").innerText="";
-return;
-}
-
-let valorUnit = valores[tipo][formaPagamento];
-let total = valorUnit * qtd;
-
-document.getElementById("unitario").innerText=formatar(valorUnit);
-document.getElementById("total").innerText=formatar(total);
-
-if(formaPagamento=="pix"){
-let economia = (valores[tipo]["cartao"] - valores[tipo]["pix"]) * qtd;
-document.getElementById("economia").innerText="Você economiza R$ "+formatar(economia);
-}else{
-document.getElementById("economia").innerText="";
-}
-}
-
-document.getElementById("tipo").addEventListener("change",calcular);
-document.getElementById("quantidade").addEventListener("change",calcular);
+document.getElementById("vagas").innerText=vagas;
 
 function copiarPix(){
 navigator.clipboard.writeText("trilheiros.roomt@gmail.com")
-.then(()=>alert("Chave PIX copiada com sucesso!"))
-.catch(()=>alert("Copie manualmente: trilheiros.roomt@gmail.com"));
+.then(()=>alert("Chave PIX copiada!"));
 }
 
-function enviarWhats(){
-let nome = document.getElementById("nome").value;
-let telefone = document.getElementById("telefone").value;
-let tipo = document.getElementById("tipo").value;
-let qtd = document.getElementById("quantidade").value;
-let total = document.getElementById("total").innerText;
+function confirmar(){
+if(vagas<=0){alert("Esgotado");return;}
 
-if(!nome || !telefone || !tipo || !formaPagamento){
+let nome=document.getElementById("nome").value.trim().toLowerCase();
+let tipo=document.getElementById("tipo").value;
+
+if(!nome||!tipo||!forma){
 alert("Preencha todos os campos.");
 return;
 }
 
-let mensagem = `Olá, meu nome é ${nome}.
-Telefone: ${telefone}
-Reserva: ${tipo}
-Quantidade: ${qtd}
-Forma de pagamento: ${formaPagamento}
-Total: R$ ${total}
-Estou enviando o comprovante.`;
+if(reservas.find(r=>r.nome===nome)){
+alert("Nome já registrado.");
+return;
+}
 
-window.open("https://wa.me/5566996926174?text="+encodeURIComponent(mensagem),"_blank");
+let valor=valores[tipo][forma];
+
+reservas.push({nome,tipo,forma,valor});
+localStorage.setItem("reservasNobres",JSON.stringify(reservas));
+
+vagas--;
+localStorage.setItem("vagasNobres",vagas);
+document.getElementById("vagas").innerText=vagas;
+
+atualizarAdmin();
+
+window.open("https://wa.me/5566996926174","_blank");
+}
+
+function abrirAdmin(){
+if(prompt("Senha:")!=="trilheiros2025"){return;}
+document.getElementById("adminPanel").style.display="block";
+atualizarAdmin();
+}
+
+function atualizarAdmin(){
+let lista=document.getElementById("listaReservas");
+lista.innerHTML="";
+let total=0;
+
+reservas.forEach((r,i)=>{
+total+=r.valor;
+let li=document.createElement("li");
+li.innerHTML=r.nome+" - R$ "+r.valor+
+" <button onclick='excluir("+i+")'>Excluir</button>";
+lista.appendChild(li);
+});
+
+document.getElementById("totalArrecadado").innerText=total;
+}
+
+function excluir(i){
+vagas++;
+localStorage.setItem("vagasNobres",vagas);
+reservas.splice(i,1);
+localStorage.setItem("reservasNobres",JSON.stringify(reservas));
+document.getElementById("vagas").innerText=vagas;
+atualizarAdmin();
+}
+
+function calcularLucro(){
+let total=parseFloat(document.getElementById("totalArrecadado").innerText)||0;
+let custos=(+document.getElementById("cTransporte").value||0)+
+(+document.getElementById("cHospedagem").value||0)+
+(+document.getElementById("cOutros").value||0);
+
+document.getElementById("lucro").innerText=(total-custos);
+}
+
+function resetar(){
+localStorage.setItem("vagasNobres",25);
+localStorage.removeItem("reservasNobres");
+location.reload();
 }
 
 </script>
