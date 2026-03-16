@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
 
 <meta charset="UTF-8">
@@ -23,9 +24,8 @@ margin:auto;
 
 .banner{
 width:100%;
-border-radius:20px;
-margin-bottom:25px;
-box-shadow:0 15px 40px rgba(0,0,0,0.6);
+border-radius:18px;
+margin-bottom:20px;
 }
 
 .card{
@@ -39,67 +39,84 @@ box-shadow:0 10px 30px rgba(0,0,0,0.6);
 h1{
 font-size:24px;
 font-weight:800;
-margin-bottom:10px;
 }
 
 .section{
 margin-top:15px;
-font-weight:600;
+font-weight:700;
 color:#38bdf8;
 }
 
 label{
 display:block;
-margin-top:12px;
-font-weight:600;
+margin-top:10px;
 }
 
 select,input{
 width:100%;
-padding:12px;
-margin-top:5px;
+padding:10px;
 border-radius:10px;
 border:none;
 background:#1f2937;
 color:white;
+margin-top:5px;
 }
 
 .total{
-font-size:26px;
+font-size:24px;
 font-weight:800;
-margin-top:15px;
 color:#38bdf8;
+margin-top:10px;
 }
 
 button{
 width:100%;
-padding:14px;
+padding:12px;
 border:none;
-border-radius:12px;
-margin-top:12px;
+border-radius:10px;
+margin-top:10px;
+cursor:pointer;
 font-weight:700;
+}
+
+.pix{background:#16a34a;color:white;}
+.cartao{background:#2563eb;color:white;}
+.whats{background:#22c55e;color:white;}
+
+.admin-btn{
+position:fixed;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+opacity:0.4;
 cursor:pointer;
 }
 
-.pix{
-background:#059669;
-color:white;
+.admin{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
 }
 
-.cartao{
-background:#2563eb;
-color:white;
+.admin-content{
+background:#111827;
+padding:25px;
+border-radius:18px;
+width:90%;
+max-width:600px;
+max-height:90vh;
+overflow:auto;
 }
 
-.whats{
-background:#16a34a;
-color:white;
-}
-
-.alerta{
-margin-top:8px;
-color:#f87171;
-font-weight:600;
+ul{
+padding-left:15px;
 }
 
 </style>
@@ -111,23 +128,19 @@ font-weight:600;
 
 <div class="card">
 
-<h1>💙 Nobres te chama!</h1>
+<h1>💙 Nobres te chama</h1>
 
-📅 11 e 12 de abril  
-⏰ Saída 05h  
-🕑 Retorno 14h  
-
-<div class="section">Roteiro</div>
-Rio Triste<br>
-Balneário Refúgio
+📅 11 e 12 de abril<br>
+⏰ Saída 05h<br>
+🕑 Retorno 14h
 
 <div class="section">Incluso</div>
 
-Transporte ida e volta<br>
-Almoço<br>
-Café da manhã<br>
-Hospedagem<br>
-Seguro de vida
+✔ Transporte<br>
+✔ Café da manhã<br>
+✔ Almoço<br>
+✔ Hospedagem<br>
+✔ Seguro viagem
 
 <div class="section">Valores</div>
 
@@ -137,10 +150,9 @@ Casal PIX 1800 | Cartão 1849
 
 </div>
 
-
 <div class="card">
 
-<label>Nome completo</label>
+<label>Nome</label>
 <input id="nome">
 
 <label>Adultos</label>
@@ -152,45 +164,73 @@ Casal PIX 1800 | Cartão 1849
 <label>Casal</label>
 <select id="casal"></select>
 
-<label>Forma de pagamento</label>
+<label>Pagamento</label>
 
 <select id="pagamento">
-
 <option value="">Escolher</option>
 <option value="pix">PIX</option>
 <option value="cartao">Cartão</option>
-
 </select>
 
 <div class="total">
-Total: R$ <span id="total">0</span>
+Total R$ <span id="total">0</span>
 </div>
 
-<div id="aviso" class="alerta"></div>
+<button id="pixBtn" class="pix" style="display:none">Copiar PIX</button>
 
-<button id="pixBtn" class="pix" style="display:none">
-Copiar chave PIX
-</button>
+<button id="cartaoBtn" class="cartao" style="display:none">Pagar no cartão</button>
 
-<button id="cartaoBtn" class="cartao" style="display:none">
-Pagar no Cartão
-</button>
+<button class="whats" onclick="confirmar()">Confirmar reserva</button>
 
-<button class="whats" onclick="whats()">
-Confirmar reserva no WhatsApp
-</button>
+</div>
+
+<div class="admin-btn" onclick="abrirAdmin()">⚙</div>
+
+<div class="admin" id="admin">
+
+<div class="admin-content">
+
+<h2>Painel Financeiro</h2>
+
+<p>Total arrecadado: R$ <span id="totalArrecadado">0</span></p>
+
+<p>Total passageiros: <span id="totalPassageiros">0</span></p>
+
+<label>Transporte</label>
+<input id="cTransporte" type="number">
+
+<label>Hospedagem</label>
+<input id="cHospedagem" type="number">
+
+<label>Alimentação</label>
+<input id="cAlimentacao" type="number">
+
+<label>Outros</label>
+<input id="cOutros" type="number">
+
+<button onclick="lucro()">Calcular lucro</button>
+
+<p>Lucro estimado: R$ <span id="lucro">0</span></p>
+
+<h3>Lista de passageiros</h3>
+
+<ul id="lista"></ul>
+
+<button onclick="fecharAdmin()">Fechar</button>
+
+</div>
 
 </div>
 
 <script>
 
 let valores={
-
 adulto:{pix:870,cartao:899},
 crianca:{pix:780,cartao:799},
 casal:{pix:1800,cartao:1849}
-
 }
+
+let reservas=JSON.parse(localStorage.getItem("reservas"))||[]
 
 for(let i=0;i<=10;i++){
 
@@ -222,24 +262,14 @@ total+=cs*valores.casal[p]
 
 }
 
-totalSpan=total.toLocaleString("pt-BR")
+document.getElementById("total").innerText=
+total.toLocaleString("pt-BR")
 
-document.getElementById("total").innerText=totalSpan
+pixBtn.style.display="none"
+cartaoBtn.style.display="none"
 
-document.getElementById("pixBtn").style.display="none"
-document.getElementById("cartaoBtn").style.display="none"
-
-if(p==="pix"){
-
-pixBtn.style.display="block"
-
-}
-
-if(p==="cartao"){
-
-cartaoBtn.style.display="block"
-
-}
+if(p==="pix") pixBtn.style.display="block"
+if(p==="cartao") cartaoBtn.style.display="block"
 
 }
 
@@ -247,7 +277,7 @@ pixBtn.onclick=function(){
 
 navigator.clipboard.writeText("trilheiros.roomt@gmail.com")
 
-alert("PIX copiado. Após pagar envie o comprovante no WhatsApp.")
+alert("PIX copiado. Após pagar envie comprovante.")
 
 }
 
@@ -257,30 +287,103 @@ let cs=casal.value
 let a=adultos.value
 
 if(cs>0){
-
 window.open("https://mpago.li/1btjQWB")
-
 return
-
 }
 
 if(a>0){
-
 window.open("https://mpago.li/2HtFaSv")
-
 return
-
 }
 
 alert("Escolha quantidade primeiro")
 
 }
 
-function whats(){
+function confirmar(){
 
 let nome=document.getElementById("nome").value
 
-window.open("https://wa.me/5566996926174?text=Olá quero confirmar minha vaga para Nobres. Nome: "+nome)
+let totalVagas=
+parseInt(adultos.value)+
+parseInt(criancas.value)+
+parseInt(casal.value)
+
+reservas.push({
+nome:nome,
+vagas:totalVagas
+})
+
+localStorage.setItem("reservas",JSON.stringify(reservas))
+
+window.open("https://wa.me/5566996926174")
+
+}
+
+function abrirAdmin(){
+
+if(prompt("Senha")!="2026")return
+
+document.getElementById("admin").style.display="flex"
+
+atualizar()
+
+}
+
+function fecharAdmin(){
+
+document.getElementById("admin").style.display="none"
+
+}
+
+function atualizar(){
+
+let lista=document.getElementById("lista")
+
+lista.innerHTML=""
+
+let total=0
+let passageiros=0
+
+reservas.forEach((r,i)=>{
+
+lista.innerHTML+=
+`<li>${r.nome} - ${r.vagas} pessoa(s)
+<button onclick="excluir(${i})">Excluir</button></li>`
+
+total+=r.vagas*870
+passageiros+=r.vagas
+
+})
+
+document.getElementById("totalArrecadado").innerText=total
+document.getElementById("totalPassageiros").innerText=passageiros
+
+}
+
+function excluir(i){
+
+reservas.splice(i,1)
+
+localStorage.setItem("reservas",JSON.stringify(reservas))
+
+atualizar()
+
+}
+
+function lucro(){
+
+let total=parseFloat(
+document.getElementById("totalArrecadado").innerText)
+
+let custos=
+(+cTransporte.value||0)+
+(+cHospedagem.value||0)+
+(+cAlimentacao.value||0)+
+(+cOutros.value||0)
+
+document.getElementById("lucro").innerText=
+(total-custos)
 
 }
 
