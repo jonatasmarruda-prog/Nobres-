@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,7 +10,6 @@
 <title>Passeio Nobres - Trilheiros</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
-
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
 
 <style>
@@ -43,11 +43,9 @@ h1{
 font-size:34px;
 font-weight:900;
 text-align:center;
-
 background:linear-gradient(90deg,#38bdf8,#22c55e,#3b82f6);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-
 text-shadow:0 6px 20px rgba(0,0,0,0.8);
 }
 
@@ -78,11 +76,9 @@ color:white;
 font-size:32px;
 font-weight:900;
 text-align:center;
-
 background:linear-gradient(90deg,#22c55e,#38bdf8);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-
 margin-top:10px;
 }
 
@@ -168,9 +164,9 @@ padding-left:15px;
 
 <div class="section">Valores</div>
 
-Adulto PIX 870 | Cartão 899<br>
-Criança PIX 780 | Cartão 799<br>
-Casal PIX 1800 | Cartão 1849
+Adulto PIX R$ 870,00 | Cartão R$ 899,00<br>
+Criança PIX R$ 780,00 | Cartão R$ 799,00<br>
+Casal PIX R$ 1.800,00 | Cartão R$ 1.849,00
 
 </div>
 
@@ -197,11 +193,10 @@ Casal PIX 1800 | Cartão 1849
 </select>
 
 <div class="total">
-Total R$ <span id="total">0</span>
+<span id="total">R$ 0,00</span>
 </div>
 
 <button id="pixBtn" class="pix" style="display:none">Copiar chave PIX</button>
-
 <button id="cartaoBtn" class="cartao" style="display:none">Pagar no cartão</button>
 
 <div id="qrcode"></div>
@@ -218,8 +213,7 @@ Total R$ <span id="total">0</span>
 
 <h2>Painel Financeiro</h2>
 
-<p>Total arrecadado: R$ <span id="totalArrecadado">0</span></p>
-
+<p>Total arrecadado: <span id="totalArrecadado">R$ 0,00</span></p>
 <p>Total passageiros: <span id="totalPassageiros">0</span></p>
 
 <label>Transporte</label>
@@ -236,7 +230,7 @@ Total R$ <span id="total">0</span>
 
 <button onclick="lucro()">Calcular lucro</button>
 
-<p>Lucro estimado: R$ <span id="lucro">0</span></p>
+<p>Lucro estimado: <span id="lucro">R$ 0,00</span></p>
 
 <h3>Lista de passageiros</h3>
 
@@ -258,12 +252,14 @@ casal:{pix:1800,cartao:1849}
 
 let reservas=JSON.parse(localStorage.getItem("reservas"))||[]
 
-for(let i=0;i<=10;i++){
+function moeda(v){
+return v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})
+}
 
+for(let i=0;i<=10;i++){
 adultos.innerHTML+=`<option>${i}</option>`
 criancas.innerHTML+=`<option>${i}</option>`
 casal.innerHTML+=`<option>${i}</option>`
-
 }
 
 adultos.onchange=calcular
@@ -281,20 +277,16 @@ let p=pagamento.value
 let total=0
 
 if(p){
-
 total+=a*valores.adulto[p]
 total+=c*valores.crianca[p]
 total+=cs*valores.casal[p]
-
 }
 
-document.getElementById("total").innerText=
-total.toLocaleString("pt-BR")
+document.getElementById("total").innerText=moeda(total)
 
 pixBtn.style.display="none"
 cartaoBtn.style.display="none"
-
-document.getElementById("qrcode").innerHTML=""
+qrcode.innerHTML=""
 
 if(p==="pix"){
 
@@ -313,11 +305,8 @@ if(p==="cartao") cartaoBtn.style.display="block"
 }
 
 pixBtn.onclick=function(){
-
 navigator.clipboard.writeText("trilheiros.roomt@gmail.com")
-
 alert("PIX copiado. Após pagar envie comprovante.")
-
 }
 
 cartaoBtn.onclick=function(){
@@ -336,7 +325,6 @@ return
 }
 
 alert("Escolha quantidade primeiro")
-
 }
 
 function confirmar(){
@@ -370,9 +358,7 @@ atualizar()
 }
 
 function fecharAdmin(){
-
 document.getElementById("admin").style.display="none"
-
 }
 
 function atualizar(){
@@ -395,7 +381,7 @@ passageiros+=r.vagas
 
 })
 
-document.getElementById("totalArrecadado").innerText=total
+document.getElementById("totalArrecadado").innerText=moeda(total)
 document.getElementById("totalPassageiros").innerText=passageiros
 
 }
@@ -412,8 +398,7 @@ atualizar()
 
 function lucro(){
 
-let total=parseFloat(
-document.getElementById("totalArrecadado").innerText)
+let total=parseFloat(document.getElementById("totalArrecadado").innerText.replace(/\D/g,''))/100
 
 let custos=
 (+cTransporte.value||0)+
@@ -421,8 +406,7 @@ let custos=
 (+cAlimentacao.value||0)+
 (+cOutros.value||0)
 
-document.getElementById("lucro").innerText=
-(total-custos)
+document.getElementById("lucro").innerText=moeda(total-custos)
 
 }
 
@@ -430,3 +414,4 @@ document.getElementById("lucro").innerText=
 
 </body>
 </html>
+```
